@@ -7,12 +7,34 @@ const typeDefs = gql`
   type Novel {
     _id: ID!
     title: String
-    author: String
+    author: Author
+    uploader: Account!
   }
 
   type Author {
     name: String
+    type: String!
+    account: String
   }
+
+  type Chapter {
+    title: String!
+    number: Int!
+    content: String
+    uploadTime: DateTime!
+  }
+
+  type Account {
+    type: String!
+    _id: ID!
+    email: EmailAddress!
+    username: String!
+    createdTime: DateTime!
+  }
+
+  scalar DateTime
+
+  scalar EmailAddress
 
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each. In this
@@ -25,7 +47,7 @@ const typeDefs = gql`
   type Query {
     SearchNovel(text: String!): [Novel]
     Summary(id: ID!): Novel
-    Author: [Author]
+    ReadChapter(id: ID!): Chapter
   }
 
 `;
