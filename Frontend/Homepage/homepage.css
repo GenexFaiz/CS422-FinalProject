@@ -1,0 +1,278 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Armata';
+}
+.wrap-body {
+    height: 1000px;
+}
+.header {
+    display: flex;
+    height: 120px;
+}
+
+/*Menu*/
+.menu-bar {
+    display: flex;
+    list-style: none;
+    margin-left: 190px;
+    margin-top: 47px;
+}
+ul.menu-bar li a {
+    display: block;
+    padding-top: 40px;
+    padding-right: 100px;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+}
+
+/*Search box*/
+.search-box {
+    background: rgba(157, 156, 165, 0.52);
+    height: 35px;
+    width: 500px;
+    margin-top: 77px;
+    margin-left: 237px;
+    border: #000000 solid 1px;
+}
+.search-txt {
+    border: none;
+    background: none;
+    outline: none;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    line-height: 35px;
+    width: 400px;
+    padding-left: 10px;
+}
+::placeholder {color: rgb(0, 0, 0);}
+.search-btn {
+    color: #000000;
+    text-decoration: none;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    float: right;
+    justify-content: center;
+    align-items: center;
+}
+.main-body{
+    display: flex;
+    width: 1565px;
+    height: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(157, 156, 165, 0.52);
+    overflow: hidden;
+    border: #000000 solid 1px;
+}
+
+/*Top Comic*/
+.top-comic {
+    height: 272px;
+}
+.top-comic-top {
+    margin-top: 30px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+    width: 1130px;
+    height: 25px;
+}
+.top-comic-top span {
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+    color: rgb(0, 0, 0);
+}
+.top-comic-bottom {
+    background: rgba(150, 147, 165, 0.34);
+    width: 1130px;
+    margin-left: 40px;
+    height: 205px;
+    border: #f5f5f5b8 solid 1px;
+}
+.tcomic-item {
+    display: flex;
+    list-style: none;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 140px;
+}
+.tcomic-item li {
+    margin-right: 60px;
+    margin-top: 15px;
+    margin-left: 18px;
+}
+.tcomic-item li a{
+    text-decoration: none;
+}
+.tcomic-item li a img {
+    width: 90px;
+    height: 90px;
+}
+.tcomic-item li a h3.tcomic-name {
+    font-size: 15px;
+    text-align: center;
+    color: black;
+}
+.wrap-btn {
+    display: flex;
+    margin-top: 6px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6px;
+    width: 310px;
+}
+.left-btn {
+    font-size: 25px;
+    color: black;
+    height: 35px;
+    width: 25px;
+    margin-right: 270px;
+}
+.right-btn {
+    font-size: 25px;
+    color: black;
+    height: 35px;
+    width: 25px;
+}
+
+/*Recommend*/
+.recommend {
+    height: 800px;
+    width: 395px;
+}
+.recommend-top {
+    height: 25px;
+    width: 340px;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+.recommend-top span {
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+    color: rgb(0, 0, 0);
+}
+.recommend-bottom {
+    height: 742px;
+    width: 340px;
+    background: rgba(150, 147, 165, 0.34);
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border: #f5f5f5b8 solid 1px;
+}
+.rcomic-item {
+    display: flex;
+    list-style: none;
+    width: 340px;
+    height: 680px;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 20px 0 0;
+}
+.rcomic-item li {
+    width: 110px;
+    padding: 15px 30px 5px 30px;
+    margin-bottom: 15px;
+}
+.rcomic-item li a{
+    text-decoration: none;
+}
+.rcomic-item li a img {
+    width: 100px;
+    height: 100px;
+}
+.rcomic-item li a h3.rcomic-name {
+    font-size: 20px;
+    text-align: center;
+    color: black;
+}
+.down-btn {
+    font-size: 25px;
+    color: rgb(0, 0, 0);
+    height: 35px;
+    width: 25px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*Latest Update*/
+.latest-update {
+    height: 497px;
+}
+.latest-update-top {
+    margin-top: 10px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+    width: 1130px;
+    height: 25px;
+}
+.latest-update-top span {
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+    color: rgb(0, 0, 0);
+}
+.latest-update-bottom {
+    background: rgba(150, 147, 165, 0.34);
+    width: 1130px;
+    margin-left: 40px;
+    height: 460px;
+    border: #f5f5f5b8 solid 1px;
+}
+.lucomic-item {
+    display: flex;
+    list-style: none;
+    width: 1099px;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 20px 0 0;
+}
+.lucomic-item li {
+    padding: 0px 88px 5px 5px;
+    margin-bottom: 15px;
+    display: flex;
+}
+.lucomic-img {
+    float: left;
+}
+.lucomic-img a img {
+    width: 110px;
+    height: 110px;
+}
+.lucomic-info {
+    float: right;
+}
+.lucomic-info a.lucomic-name {
+    margin-left: 10px;
+    display: block;
+    font-size: 20px;
+    text-decoration: none;
+    color: rgb(24, 118, 180);
+}
+.lucomic-info span {
+    margin-left: 10px;
+    margin-top: 7px;
+    display: block;
+    font-size: 15px;
+}
+.more-btn {
+    text-align: center;
+    background: rgba(150, 147, 165, 0.34);
+    height: 38px;
+}
+.more-btn a {
+    text-decoration: none;
+}
+.more-btn a h3 {
+    padding-top: 5px;
+    font-size: 20px;
+    font-weight: lighter;
+    color: rgb(0, 0, 0);
+}
+
+
