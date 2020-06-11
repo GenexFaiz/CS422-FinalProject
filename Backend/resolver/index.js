@@ -1,15 +1,15 @@
 
-const novelResolver = require('./novel');
 const accountResolver = require('./account')
-const chapterResolver = require('./chapter')
+const queryResolver = require('./query')
+const mutationResolver = require('./mutation')
 const { DateTimeResolver, EmailAddressResolver } = require('graphql-scalars');
 
 const rootResolver = {
-   ...novelResolver,
-   ...accountResolver,
-   ...chapterResolver,
+   ...queryResolver,
+   ...mutationResolver,
    DateTime: DateTimeResolver,
    EmailAddress: EmailAddressResolver,
+   ...accountResolver
 }
 
 module.exports = rootResolver;

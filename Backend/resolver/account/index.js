@@ -1,14 +1,16 @@
 const Account = require('../../models/account')
+const jwt = require("jsonwebtoken");
 
 module.exports = resolvers = {
 	Novel: {
 		async uploader(parent, {text}, context, info) {
 			try {
-                const AccountID = parent.uploader
-                console.log('parent', parent)
+				const AccountID = parent.uploader.toString()
+				debugger
 				const UploaderAccount = await Account.findOne({
-                    id: AccountID }).select('-password')
-                console.log(UploaderAccount)
+					_id: AccountID
+				}).select('-password')
+				debugger
 				if (!UploaderAccount) {
 					throw new Error("Account does not exist")
 				}
@@ -18,5 +20,5 @@ module.exports = resolvers = {
 				throw err;
 			}
 		},
-	}
+	},
 };

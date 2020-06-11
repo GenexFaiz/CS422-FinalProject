@@ -41,7 +41,8 @@ const typeDefs = gql`
   # case, the "books" query returns an array of zero or more Books (defined above).
 
   type Mutation {
-    login(username: String!, password: String): Boolean!
+    login(email: String!, password: String!): String
+    signup(email: String!, password: String!): String
   }
 
   type Query {
