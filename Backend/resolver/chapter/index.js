@@ -15,5 +15,22 @@ module.exports = resolvers = {
 				throw err;
 			}
 		},
+	},
+	Novel: {
+		async chapter(parent, {text}, context, info) {
+			try {
+				const novelID = parent._id.toString()
+				const ChapterList = await Chapter.find({
+					novel: novelID
+				})
+				if (!ChapterList) {
+					throw new Error("Novel does not have any chapter yet")
+				}
+				return ChapterList
+			}
+			catch (err) {
+				throw err;
+			}
+		},
 	}
 };

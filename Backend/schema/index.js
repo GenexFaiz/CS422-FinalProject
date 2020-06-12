@@ -9,6 +9,7 @@ const typeDefs = gql`
     title: String
     author: Author
     uploader: Account!
+    chapter: [Chapter!]
   }
 
   type Author {
@@ -18,6 +19,7 @@ const typeDefs = gql`
   }
 
   type Chapter {
+    novel: Novel!
     title: String!
     number: Int!
     content: String
@@ -43,6 +45,7 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): String
     signup(email: String!, password: String!): String
+    createNovel(title: String!, uploader: ID!, type: String!, author: String): Novel
   }
 
   type Query {

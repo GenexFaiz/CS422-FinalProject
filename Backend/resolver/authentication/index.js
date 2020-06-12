@@ -31,7 +31,7 @@ module.exports = resolvers = {
 				throw err;
 			}
 		},
-		async signup(parent, {email, password}, context, info) {
+		async createNovel(parent, {email, password}, context, info) {
 			try {
 				const CurrentAccount = await Account.findOne({
 					email: email,
