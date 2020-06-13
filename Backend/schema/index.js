@@ -10,12 +10,14 @@ const typeDefs = gql`
     author: Author
     uploader: Account!
     chapter: [Chapter!]
+    createdTime: DateTime!
+    updatedTime: DateTime!
   }
 
   type Author {
     name: String
     type: String!
-    account: String
+    account: Account
   }
 
   type Chapter {
@@ -52,6 +54,7 @@ const typeDefs = gql`
     SearchNovel(text: String!): [Novel]
     Summary(id: ID!): Novel
     ReadChapter(id: ID!): Chapter
+    Latest(limit: Int!, page: Int!): [Novel]
   }
 
 `;

@@ -28,6 +28,14 @@ module.exports = resolvers = {
 				throw err;
 			}
 		},
+		async Latest(parent, {limit, page}, context, info) {
+			try {
+				const novelList = await Novel.find().sort({updatedTime: -1}).skip(limit*page).limit(limit);
+				return novelList
+			} catch (err) {
+				throw err;
+			}
+		},
 	},
 	Mutation: {
 		async createNovel(parent, {title, uploader, type, author}, context, info) {
@@ -70,11 +78,14 @@ module.exports = resolvers = {
 						createdAuthor = checkAuthor._id
 					}
 				}
+				const currentTime = new Date()
 				const createdNovel = await Novel.create({
 					title: title,
                     uploader: uploader.toString(),
                     type: type,
-                    author: createdAuthor.toString()
+					author: createdAuthor.toString(),
+					createdTime: currentTime,
+					updatedTime: currentTime
                 })
                 return createdNovel
 			}

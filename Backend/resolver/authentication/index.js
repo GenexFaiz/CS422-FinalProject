@@ -31,7 +31,7 @@ module.exports = resolvers = {
 				throw err;
 			}
 		},
-		async createNovel(parent, {email, password}, context, info) {
+		async signup(parent, {email, password}, context, info) {
 			try {
 				const CurrentAccount = await Account.findOne({
 					email: email,
@@ -41,6 +41,7 @@ module.exports = resolvers = {
                 }
                 const hashedPassword = bcrypt.hashSync(password, saltRounds);
 				const createdAccount = await Account.create({
+					username: email,
 					email: email,
                     password: hashedPassword,
                     type: 'User',
