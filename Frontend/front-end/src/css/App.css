@@ -1,0 +1,602 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Armata';
+}
+/*                                                    NAV */
+.header {
+  display: flex;
+  width: 82%;
+  height: 120px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*Menu*/
+.menu-bar {
+  display: flex;
+  list-style: none;
+  width: 51%;
+  margin-left: 16px;
+  margin-top: 47px;
+}
+.current {
+  display: block;
+  padding-top: 40px;
+  padding-right: 52px;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: 24px;
+}
+.current-a {
+  font-weight: bolder;
+  text-decoration: overline;
+  color: rgb(0, 123, 238);
+}
+.current-a-home {
+  font-weight: bolder;
+  color: rgb(0, 123, 238);
+}
+/*Search box*/
+.search-box {
+  background: rgba(157, 156, 165, 0.52);
+  width: 33%;
+  height: 35px;
+  margin-top: 77px;
+  margin-left: 239px;
+}
+.search-txt {
+  border: none;
+  background: none;
+  outline: none;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  line-height: 35px;
+  width: 77%;
+  padding-left: 10px;
+}
+::placeholder {color: rgb(0, 0, 0);}
+.search-btn {
+  color: #000000;
+  text-decoration: none;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  float: right;
+  justify-content: center;
+  align-items: center;
+}
+/*                                                    HOME */
+.main-body{
+  display: flex;
+  width: 82%;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(157, 156, 165, 0.52);
+  overflow: hidden;
+}
+
+/*Top Comic*/
+.top-comic {
+  width: 800px;
+  height: 272px;
+  margin-left: 40px;
+}
+.top-comic-top {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  height: 25px;
+}
+.top-comic-top span {
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+  color: rgb(0, 0, 0);
+}
+.top-comic-bottom {
+  background: rgba(150, 147, 165, 0.34);
+  height: 205px;
+  border: #f5f5f5b8 solid 1px;
+}
+.tcomic-item {
+  display: flex;
+  list-style: none;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 140px;
+}
+.tcomic-item li {
+  margin-right: 60px;
+  margin-top: 15px;
+  margin-left: 18px;
+}
+.tcomic-item li a{
+  text-decoration: none;
+}
+.tcomic-item li a img {
+  width: 90px;
+  height: 90px;
+}
+.tcomic-item li a h3.tcomic-name {
+  font-size: 15px;
+  text-align: center;
+  color: black;
+}
+.wrap-btn {
+  display: flex;
+  margin-top: 6px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 6px;
+  width: 310px;
+}
+.left-btn {
+  font-size: 25px;
+  color: black;
+  height: 35px;
+  width: 25px;
+  margin-right: 270px;
+}
+.right-btn {
+  font-size: 25px;
+  color: black;
+  height: 35px;
+  width: 25px;
+}
+
+/*Recommend*/
+.recommend {
+  height: 800px;
+  width: 395px;
+}
+.recommend-top {
+  height: 25px;
+  width: 340px;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+.recommend-top span {
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+  color: rgb(0, 0, 0);
+}
+.recommend-bottom {
+  height: 742px;
+  width: 340px;
+  background: rgba(150, 147, 165, 0.34);
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  border: #f5f5f5b8 solid 1px;
+}
+.rcomic-item {
+  display: flex;
+  list-style: none;
+  width: 340px;
+  height: 680px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 20px 0 0;
+}
+.rcomic-item li {
+  width: 110px;
+  padding: 15px 30px 5px 30px;
+  margin-bottom: 15px;
+}
+.rcomic-item li a{
+  text-decoration: none;
+}
+.rcomic-item li a img {
+  width: 100px;
+  height: 100px;
+}
+.rcomic-item li a h3.rcomic-name {
+  font-size: 20px;
+  text-align: center;
+  color: black;
+}
+.down-btn {
+  font-size: 25px;
+  color: rgb(0, 0, 0);
+  height: 35px;
+  width: 25px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*Latest Update*/
+.latest-update {
+  width: 800px;
+  height: 497px;
+  margin-left: 40px;
+}
+.latest-update-top {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 25px;
+}
+.latest-update-top span {
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+  color: rgb(0, 0, 0);
+}
+.latest-update-bottom {
+  background: rgba(150, 147, 165, 0.34);
+  height: 460px;
+  border: #f5f5f5b8 solid 1px;
+}
+.lucomic-item {
+  display: flex;
+  list-style: none;
+  width: 800px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 20px 0 0;
+}
+.lucomic-item li {
+  padding: 0px 66px 5px 18px;
+  margin-bottom: 15px;
+  display: flex;
+}
+.lucomic-img {
+  float: left;
+}
+.lucomic-img a img {
+  width: 110px;
+  height: 110px;
+}
+.lucomic-info {
+  float: right;
+}
+.lucomic-info a.lucomic-name {
+  margin-left: 10px;
+  display: block;
+  font-size: 20px;
+  text-decoration: none;
+  color: rgb(24, 118, 180);
+}
+.lucomic-info span {
+  margin-left: 10px;
+  margin-top: 7px;
+  display: block;
+  font-size: 15px;
+}
+.more-btn {
+  text-align: center;
+  background: rgba(150, 147, 165, 0.34);
+  height: 38px;
+}
+.more-btn a {
+  text-decoration: none;
+}
+.more-btn a h3 {
+  padding-top: 5px;
+  font-size: 20px;
+  font-weight: lighter;
+  color: rgb(0, 0, 0);
+}
+
+/*                                                    SIGNUP */
+.signup-frame {
+  width: 1000px;
+  height: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  background:  rgba(150, 147, 165, 0.34);
+}
+.sb-top {
+  width: 75%;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  text-align: center;
+  border: #000000b8 solid 3px;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+}
+.sb-top h2 {
+  font-size: 40px;
+  color: black;
+  font-weight: lighter;
+  padding-top: 95px;
+}
+.sb-bottom {
+  width: 75%;
+  height: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.signup-part-frame {
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+  display: flex;
+}
+.signup-part {
+  float: left;
+  width: 40%;
+  height: 25px;
+}
+.fillin-box {
+  float: right;
+  background: rgba(157, 156, 165, 0.52);
+  height: 25px;
+  width: 345px;
+  border: 1px solid rgb(0, 0, 0);
+  margin-left: 209px;
+}
+.fillin-txt {
+  border: none;
+  background: none;
+  outline: none;
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+  line-height: 25px;
+  width: 500px;
+  margin-left: 5px;
+}
+.confirm-btn-wrap {
+  margin-top: 20px;
+}
+.confirm-btn {
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  background: rgba(157, 156, 165, 0.52);
+  border: 1px solid rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  text-shadow: none;
+}
+/*                                                    SUMMARY */
+.main-body-top {
+  width: 90%;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.novel-top {
+  width: 100%;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  border: #000000b8 solid 3px;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+}
+.novel-top h2 {
+  padding-top: 45px;
+  font-size: 40px;
+}
+.novel-mid {
+  width: 100%;
+  height: 367px;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.novel-info {
+  float: left;
+  height: 367px;
+  margin-right: 151px;
+}
+.novel-info-left {
+  float: left;
+}
+.novel-info-left img {
+  display: block;
+  width: 200px;
+  height: 300px;
+}
+.novel-info-left span {
+  display: block;
+  font-size: 20px;
+  text-align: center;
+  padding-top: 10px;
+}
+.novel-info-right {
+  float: right;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.novel-info-right span {
+  display: block;
+  font-size: 20px;
+  padding-bottom: 55px;
+}
+.novel-summary {
+  width: 53%;
+  height: 367px;
+  float: right;
+}
+.summary-top {
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.summary-top h3 {
+  font-size: 25px;
+  text-align: center;
+}
+.summary-content {
+  height: 300px;
+}
+.summary-content p {
+  text-align: justify;
+  line-height: 25px;
+  font-size: 18px;
+}
+.main-body-bot {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.chapter-top {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border: #000000b8 solid 3px;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+}
+.chapter-top h2 {
+  padding-top: 15px;
+  font-size: 40px;
+}
+.chapter-list {
+  list-style: none;
+}
+.chapter-list li {
+  text-align: center;
+  background: rgba(157, 156, 165, 0.52);
+  margin: 20px auto;
+}
+.chapter-list li a{
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: 25px;
+}
+.chapter-list li a:hover{
+  font-weight: bold;
+  color: rgb(15, 80, 221);
+}
+/*                                                     READ */
+.main-body-wrap {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.readnovel-top {
+  width: 100%;
+  height: 60px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  border: #000000b8 solid 3px;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+}
+.readnovel-top #novelname {
+  font-size: 40px;
+}
+.readnovel-top #chapter {
+  padding-left: 15px;
+  font-size: 20px;
+}
+.readnovel-mid {
+  margin-top: 20px;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: justify;
+}
+.readnovel-bot {
+  width: 70%;
+  height: 40px;
+  display: flex;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.prev-btn {
+  margin-right: 600px;
+  width: 20%;
+  height: 100%;
+  background: rgba(166, 165, 172, 0.52);
+  text-align: center;
+}
+.prev-btn a, .next-btn a {
+  text-decoration: none;
+}
+.prev-btn a span, .next-btn a span{
+  color: rgb(0, 0, 0);
+  font-size: 30px;
+}
+.next-btn {
+  width: 20%;
+  height: 100%;
+  background: rgba(166, 165, 172, 0.52);
+  text-align: center;
+}
+
+/*                                                     LOGIN */
+.login-frame {
+  width: 1000px;
+  height: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  background:  rgba(150, 147, 165, 0.34);
+}
+.lg-top {
+  width: 75%;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  text-align: center;
+  border: #000000b8 solid 3px;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+}
+.lg-top h2 {
+  font-size: 40px;
+  color: black;
+  font-weight: lighter;
+  padding-top: 95px;
+}
+.lg-bottom {
+  width: 75%;
+  height: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.login-part-frame {
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+  display: flex;
+}
+.login-part {
+  float: left;
+  width: 40%;
+  height: 25px;
+}
+.lg-fillin-box {
+  float: right;
+  background: rgba(157, 156, 165, 0.52);
+  height: 25px;
+  width: 345px;
+  border: 1px solid rgb(0, 0, 0);
+  margin-left: 209px;
+}
+.lg-fillin-txt {
+  border: none;
+  background: none;
+  outline: none;
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+  line-height: 25px;
+  width: 500px;
+  margin-left: 5px;
+}
+.lg-confirm-btn-wrap {
+  margin-top: 20px;
+}
+.lg-confirm-btn {
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  background: rgba(157, 156, 165, 0.52);
+  border: 1px solid rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  text-shadow: none;
+}
