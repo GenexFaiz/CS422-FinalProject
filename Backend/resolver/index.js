@@ -12,6 +12,7 @@ const rootResolver = {
    Query: {
       ...novelResolver.Query,
       ...chapterResolver.Query,
+      ...accountResolver.Query
   },
    Mutation: {
       ...authenticationResolver.Mutation,

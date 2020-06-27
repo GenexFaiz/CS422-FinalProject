@@ -58,6 +58,8 @@ const typeDefs = gql`
     Summary(id: ID!): Novel
     ReadChapter(id: ID!): Chapter
     Latest(limit: Int!, page: Int!): [Novel]
+    NovelByCurrentUser(limit: Int!, page: Int!): [Novel]
+    UserInfo: Account
   }
 
 `;

@@ -46,7 +46,7 @@ module.exports = resolvers = {
 					email: email,
                     password: hashedPassword,
                     type: 'User',
-                    createTime: new Date()
+                    createdTime: new Date()
                 })
                 const jwtObject = {
                     email: createdAccount.email,

@@ -1,6 +1,26 @@
 const Account = require('../../models/account')
 
 module.exports = resolvers = {
+	Query: {
+		async UserInfo(parent, {}, context, info) {
+			try {
+				const User = context.user || {}
+				if (!User) {
+					throw new Error("You haven't login yet")
+				}
+				const UserInfo = await Account.findOne({
+					_id: User.id
+				})
+				if (!UserInfo) {
+					throw new Error("User does not exist")
+				}
+				return UserInfo
+			}
+			catch (err) {
+				throw err;
+			}
+		},
+	},
 	Novel: {
 		async uploader(parent, {text}, context, info) {
 			try {
