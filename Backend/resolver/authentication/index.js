@@ -19,7 +19,8 @@ module.exports = resolvers = {
                 }
                 const jwtObject = {
                     email: CurrentAccount.email,
-                    type: CurrentAccount.type
+					type: CurrentAccount.type,
+					id: CurrentAccount._id
                 }
 				return jwt.sign(
 					jwtObject,
@@ -45,11 +46,12 @@ module.exports = resolvers = {
 					email: email,
                     password: hashedPassword,
                     type: 'User',
-                    createTime: new Date()
+                    createdTime: new Date()
                 })
                 const jwtObject = {
                     email: createdAccount.email,
-                    type: createdAccount.type
+					type: createdAccount.type,
+					id: createdAccount._id
                 }
 				return jwt.sign(
 					jwtObject,

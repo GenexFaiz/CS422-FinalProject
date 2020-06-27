@@ -36,10 +36,30 @@ module.exports = resolvers = {
 				throw err;
 			}
 		},
+		async NovelByCurrentUser(parent, {limit, page}, context, info) {
+			try {
+				const User = context.user || {}
+				if (!User) {
+					throw new Error("You haven't login yet")
+				}
+				const uploader = User.id || ''
+				const novelList = await Novel.find({
+					uploader: uploader
+				}).sort({updatedTime: -1}).skip(limit*page).limit(limit);
+				return novelList
+			} catch (err) {
+				throw err;
+			}
+		},
 	},
 	Mutation: {
-		async createNovel(parent, {title, uploader, type, author}, context, info) {
+		async createNovel(parent, {title, type, author, summary}, context, info) {
 			try {
+				const User = context.user || {}
+				if (!User) {
+					throw new Error("You haven't login yet")
+				}
+				const uploader = User.id || ''
 				const CurrentNovel = await Novel.findOne({
 					title: title,
 				})
@@ -84,6 +104,7 @@ module.exports = resolvers = {
                     uploader: uploader.toString(),
                     type: type,
 					author: createdAuthor.toString(),
+					summary: summary,
 					createdTime: currentTime,
 					updatedTime: currentTime
                 })
