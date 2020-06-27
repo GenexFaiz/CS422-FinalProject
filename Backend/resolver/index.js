@@ -15,7 +15,8 @@ const rootResolver = {
   },
    Mutation: {
       ...authenticationResolver.Mutation,
-      ...novelResolver.Mutation
+      ...novelResolver.Mutation,
+      ...chapterResolver.Mutation
   },
    Novel: {
       ...chapterResolver.Novel,
