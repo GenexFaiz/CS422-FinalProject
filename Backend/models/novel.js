@@ -6,6 +6,7 @@ const novelSchema = new Schema({
   title: String,
   author: Schema.Types.ObjectId,
   uploader: Schema.Types.ObjectId,
+  summary: String,
   createdTime: Date,
   updatedTime: Date
 });

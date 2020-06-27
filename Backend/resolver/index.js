@@ -12,10 +12,12 @@ const rootResolver = {
    Query: {
       ...novelResolver.Query,
       ...chapterResolver.Query,
+      ...accountResolver.Query
   },
    Mutation: {
       ...authenticationResolver.Mutation,
-      ...novelResolver.Mutation
+      ...novelResolver.Mutation,
+      ...chapterResolver.Mutation
   },
    Novel: {
       ...chapterResolver.Novel,

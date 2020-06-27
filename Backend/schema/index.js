@@ -9,6 +9,7 @@ const typeDefs = gql`
     title: String
     author: Author
     uploader: Account!
+    summary: String
     chapter: [Chapter!]
     createdTime: DateTime!
     updatedTime: DateTime!
@@ -21,6 +22,7 @@ const typeDefs = gql`
   }
 
   type Chapter {
+    _id: ID!
     novel: Novel!
     title: String!
     number: Int!
@@ -47,7 +49,8 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): String
     signup(email: String!, password: String!): String
-    createNovel(title: String!, uploader: ID!, type: String!, author: String): Novel
+    createNovel(title: String!, type: String!, author: String, summary: String!): Novel
+    createChapter(novelID: String!, content: String!, number: Int!, title: String!): Chapter
   }
 
   type Query {
@@ -55,6 +58,8 @@ const typeDefs = gql`
     Summary(id: ID!): Novel
     ReadChapter(id: ID!): Chapter
     Latest(limit: Int!, page: Int!): [Novel]
+    NovelByCurrentUser(limit: Int!, page: Int!): [Novel]
+    UserInfo: Account
   }
 
 `;

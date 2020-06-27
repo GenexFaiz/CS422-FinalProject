@@ -2,6 +2,7 @@ const { ApolloServer, gql } = require('apollo-server');
 const rootResolver =  require('./resolver/index');
 const rootSchema = require('./schema/index')
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 
 var dotenv = require('dotenv');
 dotenv.config();
@@ -12,9 +13,15 @@ console.log(mongoDB)
 const server = new ApolloServer({
     typeDefs: rootSchema,
     resolvers: rootResolver,
-    context: request => ({
-        ...request,
-    }),
+    context: async ({req}) => {
+        try {
+            const token = req.headers.authorization || '';
+            var user = await jwt.verify(token, "thisIsMySecretKey69");
+            return { ...req, user };
+        } catch(err) {
+            return req
+        }
+    },
 });
 
 mongoose.connect(`${mongoDB}`, {useNewUrlParser: true})
