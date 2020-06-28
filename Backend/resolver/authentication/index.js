@@ -45,7 +45,8 @@ module.exports = resolvers = {
 					username: email,
 					email: email,
                     password: hashedPassword,
-                    type: 'User',
+					type: 'User',
+					avatar: 'default.jpg',
                     createdTime: new Date()
                 })
                 const jwtObject = {

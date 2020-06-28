@@ -1,4 +1,5 @@
 const Account = require('../../models/account')
+const {accountMapper} = require('../../Utilities/utilities')
 
 module.exports = resolvers = {
 	Query: {
@@ -14,7 +15,9 @@ module.exports = resolvers = {
 				if (!UserInfo) {
 					throw new Error("User does not exist")
 				}
-				return UserInfo
+				const res = accountMapper(UserInfo)
+				debugger
+				return res
 			}
 			catch (err) {
 				throw err;
@@ -31,7 +34,7 @@ module.exports = resolvers = {
 				if (!UploaderAccount) {
 					throw new Error("Account does not exist")
 				}
-				return UploaderAccount
+				return accountMapper(UploaderAccount)
 			}
 			catch (err) {
 				throw err;
@@ -48,7 +51,7 @@ module.exports = resolvers = {
 				if (!AuthorAccount) {
 					throw new Error("Account does not exist")
 				}
-				return AuthorAccount
+				return accountMapper(AuthorAccount)
 			}
 			catch (err) {
 				throw err;
@@ -65,7 +68,7 @@ module.exports = resolvers = {
 				if (!AuthorAccount) {
 					throw new Error("Account does not exist")
 				}
-				return AuthorAccount
+				return accountMapper(AuthorAccount)
 			}
 			catch (err) {
 				throw err;

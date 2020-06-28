@@ -46,6 +46,7 @@ const typeDefs = gql`
     _id: ID!
     email: EmailAddress!
     username: String!
+    avatar: String!
     createdTime: DateTime!
   }
 

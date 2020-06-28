@@ -7,6 +7,7 @@ const accountSchema = new Schema({
     email: String,
     username: String,
     password: String,
+    avatar: String,
     createdTime: Date
 });
 

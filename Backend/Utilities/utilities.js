@@ -10,13 +10,17 @@ function checkForImage(mimeType) {
 }
 
 function novelMapper(object) {
-    return {
-        ...object,
-        thumbnail: path.join(directory+( object.thumbnail || 'default.jpg'))
-    }
+    object.thumbnail = path.join(directory+( object.thumbnail || 'default.jpg'))
+    return object
+}
+
+function accountMapper(object) {
+    object.avatar = path.join(directory+( object.avatar || 'default.jpg'))
+    return object
 }
 
 module.exports = {
     checkForImage,
-    novelMapper
+    novelMapper,
+    accountMapper
 }
