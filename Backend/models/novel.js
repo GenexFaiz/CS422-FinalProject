@@ -10,7 +10,8 @@ const novelSchema = new Schema({
   view: Number,
   createdTime: Date,
   avgScore: Number,
-  updatedTime: Date
+  updatedTime: Date,
+  thumbnail: String
 });
 
 module.exports = mongoose.model("novel", novelSchema);

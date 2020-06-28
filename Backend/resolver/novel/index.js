@@ -1,5 +1,9 @@
 const Novel = require('../../models/novel')
 const Author = require('../../models/author')
+const path = require('path');
+const directory = path.join(__dirname, "../../image/");
+const sharp = require('sharp')
+const { checkForImage, novelMapper }= require("../../Utilities/utilities")
 
 module.exports = resolvers = {
 	Query: {
@@ -11,7 +15,7 @@ module.exports = resolvers = {
 				if (!NovelList) {
 					throw new Error("Novels does not exist")
 				}
-				return NovelList
+				return NovelList.map(item => novelMapper(item))
 			}
 			catch (err) {
 				throw err;
@@ -23,7 +27,7 @@ module.exports = resolvers = {
 				if (!novel) {
 					throw new Error("Novel does not exist");
 				}
-				return novel
+				return novelMapper(novel)
 			} catch (err) {
 				throw err;
 			}
@@ -31,7 +35,7 @@ module.exports = resolvers = {
 		async Latest(parent, {limit, page}, context, info) {
 			try {
 				const novelList = await Novel.find().sort({updatedTime: -1}).skip(limit*page).limit(limit);
-				return novelList
+				return novelList.map(item => novelMapper(item))
 			} catch (err) {
 				throw err;
 			}
@@ -46,7 +50,7 @@ module.exports = resolvers = {
 				const novelList = await Novel.find({
 					uploader: uploader
 				}).sort({updatedTime: -1}).skip(limit*page).limit(limit);
-				return novelList
+				return novelList.map(item => novelMapper(item))
 			} catch (err) {
 				throw err;
 			}
@@ -54,7 +58,7 @@ module.exports = resolvers = {
 		async MostViewed(parent, {limit, page}, context, info) {
 			try {
 				const novelList = await Novel.find().sort({view: -1}).skip(limit*page).limit(limit);
-				return novelList
+				return novelList.map(item => novelMapper(item))
 			} catch (err) {
 				throw err;
 			}
@@ -62,14 +66,14 @@ module.exports = resolvers = {
 		async Recommend(parent, {limit, page}, context, info) {
 			try {
 				const novelList = await Novel.find().sort({avgScore: -1}).skip(limit*page).limit(limit);
-				return novelList
+				return novelList.map(item => novelMapper(item))
 			} catch (err) {
 				throw err;
 			}
 		},
 	},
 	Mutation: {
-		async createNovel(parent, {title, type, author, summary}, context, info) {
+		async createNovel(parent, {title, type, author, summary, thumbnail}, context, info) {
 			try {
 				const User = context.user || false
 				if (!User) {
@@ -115,7 +119,7 @@ module.exports = resolvers = {
 					}
 				}
 				const currentTime = new Date()
-				const createdNovel = await Novel.create({
+				var createdNovel = await Novel.create({
 					title: title,
                     uploader: uploader.toString(),
                     type: type,
@@ -123,10 +127,19 @@ module.exports = resolvers = {
 					summary: summary,
 					view: 0,
 					avgScore: 0,
+					thumbanil: 'default.jpg',
 					createdTime: currentTime,
 					updatedTime: currentTime
-                })
-                return createdNovel
+				})
+				await thumbnail.then(async file => {
+					const {filename, mimetype, stream, encoding, createReadStream} = file
+					const imageUrl = path.join(directory, createdNovel._id.toString() + filename)
+					if (checkForImage(mimetype)) {
+						await sharp(stream.path).resize(1000).toFile(imageUrl)
+						createdNovel = await Novel.findOneAndUpdate({_id: createdNovel._id}, {thumbnail: createdNovel._id.toString() + filename})
+					}
+				})
+                return novelMapper(createdNovel)
 			}
 			catch (err) {
 				throw err;
@@ -143,7 +156,7 @@ module.exports = resolvers = {
 				if (!CurrentNovel) {
 					throw new Error("Chapter is parentless")
 				}
-				return CurrentNovel
+				return novelMapper(CurrentNovel)
 			}
 			catch (err) {
 				throw err;
@@ -160,7 +173,7 @@ module.exports = resolvers = {
 				if (!CurrentNovel) {
 					throw new Error("Chapter is parentless")
 				}
-				return CurrentNovel
+				return novelMapper(CurrentNovel)
 			}
 			catch (err) {
 				throw err;

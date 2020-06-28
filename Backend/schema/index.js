@@ -14,6 +14,7 @@ const typeDefs = gql`
     view: Int!
     rating: [Rating]
     avgScore: Float!
+    thumbnail: String
     createdTime: DateTime!
     updatedTime: DateTime!
   }
@@ -59,7 +60,7 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): String
     signup(email: String!, password: String!): String
-    createNovel(title: String!, type: String!, author: String, summary: String!): Novel
+    createNovel(title: String!, type: String!, author: String, summary: String!, thumbnail: Upload!): Novel
     createChapter(novelID: String!, content: String!, number: Int!, title: String!): Chapter
     ratingNovel(novelID: String!, score: Int!):Rating
   }
