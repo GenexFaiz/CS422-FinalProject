@@ -7,7 +7,9 @@ const novelSchema = new Schema({
   author: Schema.Types.ObjectId,
   uploader: Schema.Types.ObjectId,
   summary: String,
+  view: Number,
   createdTime: Date,
+  avgScore: Number,
   updatedTime: Date
 });
 

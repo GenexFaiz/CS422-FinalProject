@@ -5,12 +5,12 @@ module.exports = resolvers = {
 	Query: {
 		async ReadChapter(parent, {id}, context, info) {
 			try {
-                console.log('id', id)
                 const chapter = await Chapter.findOne({ _id: id });
-                console.log('chapter', chapter)
 				if (!chapter) {
 					throw new Error("Chapter does not exist");
 				}
+				const novelID = chapter.novel
+				await Novel.findOneAndUpdate({_id :novelID}, {$inc : {'view' : 1}}).exec();
 				return chapter
 			} catch (err) {
 				throw err;
@@ -20,7 +20,7 @@ module.exports = resolvers = {
 	Mutation: {
 		async createChapter(parent, {novelID, content, number, title}, context, info) {
 			try {
-				const User = context.user || {}
+				const User = context.user || false
 				if (!User) {
 					throw new Error("You haven't login yet")
 				}

@@ -11,7 +11,17 @@ const typeDefs = gql`
     uploader: Account!
     summary: String
     chapter: [Chapter!]
+    view: Int!
+    rating: [Rating]
+    avgScore: Float!
     createdTime: DateTime!
+    updatedTime: DateTime!
+  }
+
+  type Rating {
+    user: Account!
+    score: Int!
+    novel: Novel!
     updatedTime: DateTime!
   }
 
@@ -51,6 +61,7 @@ const typeDefs = gql`
     signup(email: String!, password: String!): String
     createNovel(title: String!, type: String!, author: String, summary: String!): Novel
     createChapter(novelID: String!, content: String!, number: Int!, title: String!): Chapter
+    ratingNovel(novelID: String!, score: Int!):Rating
   }
 
   type Query {
@@ -58,7 +69,10 @@ const typeDefs = gql`
     Summary(id: ID!): Novel
     ReadChapter(id: ID!): Chapter
     Latest(limit: Int!, page: Int!): [Novel]
+    MostViewed(limit: Int!, page: Int!): [Novel]
+    Recommend(limit: Int!, page: Int!): [Novel]
     NovelByCurrentUser(limit: Int!, page: Int!): [Novel]
+    RatingByCurrentUser(limit: Int!, page: Int!): [Rating]
     UserInfo: Account
   }
 
