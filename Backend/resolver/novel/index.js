@@ -4,7 +4,7 @@ const path = require('path');
 const directory = path.join(__dirname, "../../image/");
 const sharp = require('sharp')
 const gc = require('../../GoogleConfig')
-const bucket = gc.bucket('cs422final')
+const bucket = gc.bucket('cs422finalimage')
 const { checkForImage, novelMapper }= require("../../Utilities/utilities")
 
 const uploadImage = (file, createdNovel) => new Promise((resolve, reject) => {
@@ -19,7 +19,8 @@ const uploadImage = (file, createdNovel) => new Promise((resolve, reject) => {
 	.resize(1000)
 	.pipe(blobStream).on('finish', () => {
 		resolve()
-	}).on('error', () => {
+	}).on('error', (error) => {
+		console.log(error)
 		reject(`Unable to upload image, something went wrong`)
 	})
 })
