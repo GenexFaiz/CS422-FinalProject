@@ -147,7 +147,7 @@
 
 /*Recommend*/
 .recommend {
-  height: 800px;
+  height: 914px;
   width: 395px;
 }
 .recommend-top {
@@ -163,7 +163,7 @@
   color: rgb(0, 0, 0);
 }
 .recommend-bottom {
-  height: 742px;
+  height: 956px;
   width: 340px;
   background: rgba(150, 147, 165, 0.34);
   margin-top: 10px;
@@ -175,7 +175,7 @@
   display: flex;
   list-style: none;
   width: 340px;
-  height: 680px;
+  height: 900px;
   flex-wrap: wrap;
   margin: 0 auto;
   padding: 20px 0 0;
@@ -200,16 +200,15 @@
 .down-btn {
   font-size: 25px;
   color: rgb(0, 0, 0);
-  height: 35px;
   width: 25px;
   margin-left: auto;
   margin-right: auto;
 }
 
-/*Latest Update*/
+/*                                                     LATEST UPDATE                                                             */
 .latest-update {
-  width: 800px;
-  height: 497px;
+  width: 810px;
+  height: 740px;
   margin-left: 40px;
 }
 .latest-update-top {
@@ -225,21 +224,24 @@
 }
 .latest-update-bottom {
   background: rgba(150, 147, 165, 0.34);
-  height: 460px;
+  height: 674px;
   border: #f5f5f5b8 solid 1px;
 }
 .lucomic-item {
   display: flex;
   list-style: none;
-  width: 800px;
+  width: 820px;
   flex-wrap: wrap;
   margin: 0 auto;
   padding: 20px 0 0;
 }
 .lucomic-item li {
-  padding: 0px 66px 5px 18px;
+  padding: 10px 51px 15px 25px;
   margin-bottom: 15px;
   display: flex;
+}
+.lucomic-item li:hover {
+  background: rgba(166, 165, 172, 0.52);
 }
 .lucomic-img {
   float: left;
@@ -257,6 +259,10 @@
   font-size: 20px;
   text-decoration: none;
   color: rgb(24, 118, 180);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 207px;
 }
 .lucomic-info span {
   margin-left: 10px;
@@ -353,10 +359,21 @@
   text-decoration: none;
   text-shadow: none;
 }
+.login-wrap {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.login {
+  font-size: 20px;
+  color: rgb(0, 123, 238);
+  text-decoration: underline;
+}
 /*                                                    SUMMARY */
 .main-body-top {
   width: 90%;
-  height: 500px;
+  height: 545px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -399,6 +416,7 @@
   font-size: 20px;
   text-align: center;
   padding-top: 10px;
+ 
 }
 .novel-info-right {
   float: right;
@@ -409,9 +427,13 @@
   display: block;
   font-size: 20px;
   padding-bottom: 55px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 296px;
 }
 .novel-summary {
-  width: 53%;
+  width: 30%;
   height: 367px;
   float: right;
 }
@@ -504,6 +526,7 @@
   margin-top: 15px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 20px;
 }
 .prev-btn {
   margin-right: 600px;
@@ -599,4 +622,141 @@
   color: rgb(0, 0, 0);
   text-decoration: none;
   text-shadow: none;
+}
+.register-frame {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.register {
+  font-size: 20px;
+  color: rgb(0, 123, 238);
+  text-decoration: underline;
+}
+/*                                                    SEARCH                                                                    */
+.search-wrap {
+  width: 100%;
+}
+.search-top {
+  width: 75%;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.search-top h3 {
+  font-size: 30px;
+  color: black;
+  font-weight: lighter;
+}
+.search-bot {
+  width:75%;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  background: rgba(150, 147, 165, 0.34);
+  border: #f5f5f5b8 solid 1px;
+}
+/*                                                FOOTER                                                                        */
+.footer{
+  width: 82%;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  background: rgba(157, 156, 165, 0.52);
+}
+.footer h3 {
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+  font-weight: bolder;
+  font-style: italic;
+  text-align: center;
+}
+/*                                       NOVEL NOT FOUND                                                                       */
+.search-bot h4 {
+  font-size: 20px;
+  color: black;
+  font-weight: lighter;
+  text-align: center;
+}
+/*                                                      VIEW MORE                                                                */
+.vm-latest-update {
+  width: 810px;
+  margin-left: 40px;
+}
+.vm-latest-update-top {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  height: 25px;
+}
+.vm-latest-update-top span {
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+  color: rgb(0, 0, 0);
+}
+.vm-latest-update-mid {
+  background: rgba(150, 147, 165, 0.34);
+  height: 956px;
+  border: #f5f5f5b8 solid 1px;
+}
+.vm-latest-update-bottom {
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  display: flex;
+  width: 45%;
+}
+.prev-page {
+  margin-right: 168px;
+  width: 45%;
+  height: 100%;
+  background: rgba(166, 165, 172, 0.52);
+  text-align: center;
+}
+.next-page {
+  width: 45%;
+  height: 100%;
+  background: rgba(166, 165, 172, 0.52);
+  text-align: center;
+}
+.prev-page a, .next-page a {
+  text-decoration: none;
+}
+.prev-page a span {
+  margin-left: 10px;
+  color: rgb(0, 0, 0);
+  font-size: 25px;
+}
+.next-page a span {
+  margin-right: 10px;
+  color: rgb(0, 0, 0);
+  font-size: 25px;
+}
+/*                                                                  LOADING                                                      */
+.loading {
+  margin-left: auto;
+  margin-right: auto;
+  border: solid 10px rgba(157, 156, 165, 0.52);
+  border-top: solid 10px rgb(0, 123, 238);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  animation: load 0.5s infinite linear;
+}
+@keyframes load {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.error {
+  text-align: right;
+  font-size: 17px;
+  color: rgb(196, 41, 41);
 }
