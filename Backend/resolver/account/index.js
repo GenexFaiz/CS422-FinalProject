@@ -4,7 +4,7 @@ module.exports = resolvers = {
 	Query: {
 		async UserInfo(parent, {}, context, info) {
 			try {
-				const User = context.user || {}
+				const User = context.user || false
 				if (!User) {
 					throw new Error("You haven't login yet")
 				}
@@ -54,5 +54,22 @@ module.exports = resolvers = {
 				throw err;
 			}
 		},
-	}
+	},
+	Rating: {
+		async user(parent, {text}, context, info) {
+			try {
+				const AccountID = parent.user.toString()
+				const AuthorAccount = await Account.findOne({
+					_id: AccountID
+				}).select('-password')
+				if (!AuthorAccount) {
+					throw new Error("Account does not exist")
+				}
+				return AuthorAccount
+			}
+			catch (err) {
+				throw err;
+			}
+		},
+	},
 };

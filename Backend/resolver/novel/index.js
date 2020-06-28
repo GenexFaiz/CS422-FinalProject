@@ -38,7 +38,7 @@ module.exports = resolvers = {
 		},
 		async NovelByCurrentUser(parent, {limit, page}, context, info) {
 			try {
-				const User = context.user || {}
+				const User = context.user || false
 				if (!User) {
 					throw new Error("You haven't login yet")
 				}
@@ -51,11 +51,27 @@ module.exports = resolvers = {
 				throw err;
 			}
 		},
+		async MostViewed(parent, {limit, page}, context, info) {
+			try {
+				const novelList = await Novel.find().sort({view: -1}).skip(limit*page).limit(limit);
+				return novelList
+			} catch (err) {
+				throw err;
+			}
+		},
+		async Recommend(parent, {limit, page}, context, info) {
+			try {
+				const novelList = await Novel.find().sort({avgScore: -1}).skip(limit*page).limit(limit);
+				return novelList
+			} catch (err) {
+				throw err;
+			}
+		},
 	},
 	Mutation: {
 		async createNovel(parent, {title, type, author, summary}, context, info) {
 			try {
-				const User = context.user || {}
+				const User = context.user || false
 				if (!User) {
 					throw new Error("You haven't login yet")
 				}
@@ -105,6 +121,8 @@ module.exports = resolvers = {
                     type: type,
 					author: createdAuthor.toString(),
 					summary: summary,
+					view: 0,
+					avgScore: 0,
 					createdTime: currentTime,
 					updatedTime: currentTime
                 })
@@ -119,11 +137,26 @@ module.exports = resolvers = {
 		async novel(parent, {text}, context, info) {
 			try {
 				const novelID = parent.novel.toString()
-				debugger
 				const CurrentNovel = await Novel.findOne({
 					_id: novelID
 				})
-				debugger
+				if (!CurrentNovel) {
+					throw new Error("Chapter is parentless")
+				}
+				return CurrentNovel
+			}
+			catch (err) {
+				throw err;
+			}
+		},
+	},
+	Rating: {
+		async novel(parent, {text}, context, info) {
+			try {
+				const novelID = parent.novel.toString()
+				const CurrentNovel = await Novel.findOne({
+					_id: novelID
+				})
 				if (!CurrentNovel) {
 					throw new Error("Chapter is parentless")
 				}
