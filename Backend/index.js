@@ -3,6 +3,8 @@ const rootResolver =  require('./resolver/index');
 const rootSchema = require('./schema/index')
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
+const gc = require('./GoogleConfig')
+const bucket = gc.bucket('cs422final')
 
 var dotenv = require('dotenv');
 dotenv.config();
@@ -30,7 +32,7 @@ mongoose.connect(`${mongoDB}`, {useNewUrlParser: true})
     }).catch(err => {
         console.log(err);
     })
-
+mongoose.set('useFindAndModify', false);
 // The `listen` method launches a web server.
 server.listen().then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);

@@ -3,7 +3,26 @@ const Author = require('../../models/author')
 const path = require('path');
 const directory = path.join(__dirname, "../../image/");
 const sharp = require('sharp')
+const gc = require('../../GoogleConfig')
+const bucket = gc.bucket('cs422final')
 const { checkForImage, novelMapper }= require("../../Utilities/utilities")
+
+const uploadImage = (file, createdNovel) => new Promise((resolve, reject) => {
+	const {filename, stream} = file
+	const imageName = createdNovel._id.toString() + filename
+	const blob = bucket.file(imageName)
+	const blobStream = blob.createWriteStream({
+		resumable: false
+	})
+
+	sharp(stream.path)
+	.resize(1000)
+	.pipe(blobStream).on('finish', () => {
+		resolve()
+	}).on('error', () => {
+		reject(`Unable to upload image, something went wrong`)
+	})
+})
 
 module.exports = resolvers = {
 	Query: {
@@ -119,6 +138,7 @@ module.exports = resolvers = {
 					}
 				}
 				const currentTime = new Date()
+
 				var createdNovel = await Novel.create({
 					title: title,
                     uploader: uploader.toString(),
@@ -127,19 +147,21 @@ module.exports = resolvers = {
 					summary: summary,
 					view: 0,
 					avgScore: 0,
-					thumbanil: 'default.jpg',
+					thumbnail: "https://storage.googleapis.com/"+ bucket.name +"/default.jpg",
 					createdTime: currentTime,
 					updatedTime: currentTime
 				})
+
 				await thumbnail.then(async file => {
 					const {filename, mimetype, stream, encoding, createReadStream} = file
-					const imageUrl = path.join(directory, createdNovel._id.toString() + filename)
 					if (checkForImage(mimetype)) {
-						await sharp(stream.path).resize(1000).toFile(imageUrl)
-						createdNovel = await Novel.findOneAndUpdate({_id: createdNovel._id}, {thumbnail: createdNovel._id.toString() + filename})
+						const imageName = createdNovel._id.toString() + filename
+						const blob = bucket.file(imageName)
+						await uploadImage(file, createdNovel)
+						createdNovel = await Novel.findOneAndUpdate({_id: createdNovel._id}, {thumbnail:  `https://storage.googleapis.com/${bucket.name}/${blob.name}`}, {new: true})
 					}
 				})
-                return novelMapper(createdNovel)
+                return createdNovel
 			}
 			catch (err) {
 				throw err;

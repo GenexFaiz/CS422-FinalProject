@@ -10,7 +10,7 @@ module.exports = resolvers = {
 					throw new Error("Chapter does not exist");
 				}
 				const novelID = chapter.novel
-				await Novel.findOneAndUpdate({_id :novelID}, {$inc : {'view' : 1}}).exec();
+				await Novel.findOneAndUpdate({_id :novelID}, {$inc : {'view' : 1}}, {new: true}).exec();
 				return chapter
 			} catch (err) {
 				throw err;

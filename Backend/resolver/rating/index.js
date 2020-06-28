@@ -56,7 +56,7 @@ module.exports = resolvers = {
 					}
 				])
 				if (ratingScore.length > 0) {
-					await Novel.findOneAndUpdate({ _id: novelID }, {avgScore: ratingScore[0].avgScore})
+					await Novel.Update({ _id: novelID }, {avgScore: ratingScore[0].avgScore})
 				}
 
                 return currentRating
