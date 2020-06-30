@@ -38,9 +38,11 @@ const Read = (props) => {
                             <span id="chapter">Chapter {data.ReadChapter.number}: {data.ReadChapter.title}</span>
                         </div>
                         <div className="readnovel-mid">
-                            <p>
-                                {data.ReadChapter.content}
-                            </p>
+                            {
+                                data.ReadChapter.content.split('\r\n').map(i => {
+                                    return  <p>{i}</p>
+                                })
+                            }
                         </div>
                         <div className="readnovel-bot">
                             <div className="prev-btn">
