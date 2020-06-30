@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import Auth from './../auth/auth';
 import {NavLink, useHistory} from 'react-router-dom';
 import {LOGIN} from '../mutations/mutations';
 import {useMutation, useApolloClient} from '@apollo/react-hooks';
-import {onError} from 'apollo-link-error';
-const Login = (props) =>  {
+const Login = () =>  {
     const client = useApolloClient();
     const history = useHistory();
     console.log(client);
@@ -25,10 +23,8 @@ const Login = (props) =>  {
                 if(x.message === "Password is wrong") setErrors(true);
                 if(x.message === "Account Dont Exist") setErrors2(true);
             })
-            //console.log(err);
-            //setErrors(true);
-            //alert("WRONG PASSWORD");
-        }
+        },
+        //refetchQueries: [ {query: GET_USER} ] //{query: GET_NOVEL_USER, variables: {limit: 5, page: 0}} ]
     });
     const emailChange = (e) => {
         e.preventDefault();

@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {useHistory} from 'react-router-dom';
-import Auth from '../auth/auth';
 import {gql} from 'apollo-boost';
 import {useQuery} from '@apollo/react-hooks';
 
@@ -14,8 +13,18 @@ const Nav = () => {
 
     function IsLoggedIn() {
     const {data} = useQuery(IS_LOGGED_IN);
-    return data.isLoggedin ? <li><NavLink exact className="current" activeClassName="current-a-home" to="/logout">LOG OUT</NavLink></li>
+    return data.isLoggedin ? <li><NavLink exact className="logout" to="/logout">LOG OUT</NavLink></li>
                            : <li><NavLink exact className="current" activeClassName="current-a-home" to="/login">LOG IN</NavLink></li>
+    }
+    function User() {
+        const {data} = useQuery(IS_LOGGED_IN);
+        return data.isLoggedin ? <li className="icon">
+                                    <NavLink exact className="current" activeClassName="currentuser" to="/"><i class="fa fa-user" aria-hidden="true"></i></NavLink>
+                                    <span>
+                                        {`${localStorage.getItem("email")}`}
+                                    </span>
+                                </li>
+                               : <p></p>
     }
     let history = useHistory();
     const searchHandle = (url) => {
@@ -26,7 +35,8 @@ const Nav = () => {
         <div className="header">
             <ul className="menu-bar">
                 <li><NavLink exact className="current" activeClassName="current-a-home" to="/">HOME</NavLink></li>
-                <IsLoggedIn/>         
+                <IsLoggedIn/>   
+                <User/>                 
             </ul>
             <div className="search-box">
                 <input className="search-txt" type="text" placeholder="Type to search..." onKeyPress= {

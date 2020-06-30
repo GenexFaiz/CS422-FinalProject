@@ -8,6 +8,9 @@ query Summary($id: ID!) {
       author {
         name
         type
+        account {
+          username
+        }
       }
       uploader {
         username
@@ -17,6 +20,9 @@ query Summary($id: ID!) {
         title
         number
       }
+      summary
+      thumbnail
+      view
       createdTime
     }
   }
@@ -33,6 +39,7 @@ query ReadChapter($id: ID!) {
       chapter {
         _id
       }
+      view
     }
   } 
 }
@@ -46,7 +53,13 @@ query Latest($limit: Int!, $page: Int!) {
     createdTime
     author {
       name
+      type
+      account {
+        username
+      }
     }
+    view
+    thumbnail
   }
 }
 `
@@ -58,10 +71,58 @@ query SearchNovel($text: String!){
     title
     author {
       name
+      type
+      account {
+        username
+      }
     }
+    thumbnail
+    view
     createdTime
   }
 }
 `
 
-export {GET_SUMMARY, GET_READ, GET_LATEST, GET_SEARCH};
+const GET_TOP = gql `
+query MostViewed($limit: Int!, $page: Int!) {
+  MostViewed(limit: $limit, page: $page) {
+    _id
+    title
+    thumbnail
+  }
+}
+`;
+
+const GET_RECOMMEND = gql `
+query Recommend($limit: Int!, $page: Int!) {
+  Recommend(limit: $limit, page: $page) {
+    _id
+    title
+    thumbnail
+  }
+}
+`;
+
+const GET_USER = gql`
+query UserInfo {
+  UserInfo {
+    _id
+    type
+    email
+    username
+    avatar
+    createdTime
+  }
+}
+`;
+
+const GET_NOVEL_USER = gql `
+query NovelByCurrentUser($limit: Int!, $page: Int!) {
+  NovelByCurrentUser(limit: $limit, page: $page) {
+    _id
+    title
+  }
+}
+`;
+
+export {GET_SUMMARY, GET_READ, GET_LATEST, GET_SEARCH, GET_TOP, GET_RECOMMEND, GET_USER, GET_NOVEL_USER};
