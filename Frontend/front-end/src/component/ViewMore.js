@@ -1,15 +1,21 @@
 import React, { Fragment, useState } from 'react';
-import {GET_LATEST} from '../queries/queries';
+import {GET_LATEST, GET_RECOMMEND} from '../queries/queries';
 import {NavLink} from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
-
 const ViewMore = (props) => {
     const [page, setPage] = useState(parseInt(props.match.params.page_id, 10));
     if (page < 0) setPage(page+1);
     var pageprev=page-1;
     if (pageprev < 0) pageprev = 0;
-    const { data, loading, error } = useQuery(GET_LATEST, {variables: {limit: 12, page: page}, });
+
+    const { data, loading, error } = useQuery(GET_LATEST, {variables: {limit: 12, page: page}, fetchPolicy: "cache-and-network"});
+    const { data: data2, loading: loading2, error: error2 } = useQuery(GET_RECOMMEND, {variables: {limit: 10, page: 0}, });
     var pagenext=page+1;
+
+    if (loading2) return <div className="loading"></div>;
+    if (error2) return <p>ERROR</p>;
+    if (!data2) return <p>Not found</p>;
+
     if (loading) return <div className="loading"></div>;
     if (error) return <p>ERROR</p>;
     if (!data) return <p>Not found</p>;
@@ -25,19 +31,26 @@ const ViewMore = (props) => {
                         <div className="vm-latest-update-top"><span>LATEST UPDATE</span></div>
                         <div className="vm-latest-update-mid">
                             <ul className="lucomic-item">
-                                {data.Latest.map(x => (
-                                    <li key={x._id}>
-                                        <div className="lucomic-img">
-                                            <NavLink to={`/summary/id=${x._id}`}><img src="/image/black.jpg" alt="" /></NavLink>
-                                        </div>
-                                        <div className="lucomic-info">
-                                            <NavLink to={`/summary/id=${x._id}`} className="lucomic-name">{x.title}</NavLink>
-                                            <span>{x.author.name}</span>
-                                            <span>{x.createdTime}</span>
-                                            <span>View</span>
-                                        </div>
-                                    </li>
-                                ))}
+                                {data.Latest.map(x => {
+                                    const date = new Date(x.createdTime);
+                                    const month = new Date(x.createdTime);
+                                    const year = new Date(x.createdTime);
+                                    if(x.author.type === "self-created") x.author.name = x.author.account.username;
+                                    
+                                    return (
+                                        <li key={x._id}>
+                                            <div className="lucomic-img">
+                                                <NavLink to={`/summary/id=${x._id}`} title={x.title}><img src={x.thumbnail} alt="" /></NavLink>
+                                            </div>
+                                            <div className="lucomic-info">
+                                                <NavLink to={`/summary/id=${x._id}`} title={x.title} className="lucomic-name">{x.title}</NavLink>
+                                                <span>{x.author.name}</span>
+                                                <span>{`${date.getDate()}/${month.getMonth()+1}/${year.getFullYear()}`}</span>
+                                                <span>{x.view} views</span>
+                                            </div>
+                                        </li>
+                                    )
+                                })}
                             </ul>
                         </div>
                         <div className="vm-latest-update-bottom">
@@ -61,66 +74,16 @@ const ViewMore = (props) => {
                         <div className="recommend-top"><span>RECOMMEND</span></div> 
                         <div className="recommend-bottom">
                         <ul className="rcomic-item">
-                            <li>
-                                <a href="/summary">
-                                    <img src="/image/black.jpg" alt="" />
-                                    <h3 className="rcomic-name">Name</h3>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/summary">
-                                    <img src="/image/black.jpg" alt="" />
-                                    <h3 className="rcomic-name">Name</h3>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/summary">
-                                    <img src="/image/black.jpg" alt="" />
-                                    <h3 className="rcomic-name">Name</h3>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/summary">
-                                    <img src="/image/black.jpg" alt="" />
-                                    <h3 className="rcomic-name">Name</h3>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/summary">
-                                    <img src="/image/black.jpg" alt="" />
-                                    <h3 className="rcomic-name">Name</h3>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/summary">
-                                    <img src="/image/black.jpg" alt="" />
-                                    <h3 className="rcomic-name">Name</h3>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/summary">
-                                    <img src="/image/black.jpg" alt="" />
-                                    <h3 className="rcomic-name">Name</h3>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/summary">
-                                    <img src="/image/black.jpg" alt="" />
-                                    <h3 className="rcomic-name">Name</h3>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/summary">
-                                    <img src="/image/black.jpg" alt="" />
-                                    <h3 className="rcomic-name">Name</h3>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/summary">
-                                    <img src="/image/black.jpg" alt="" />
-                                    <h3 className="rcomic-name">Name</h3>
-                                </a>
-                            </li>
+                            {
+                                data2.Recommend.map(x => (
+                                    <li>
+                                        <NavLink to={`/summary/id=${x._id}`} title={x.title}>
+                                            <img src={x.thumbnail} alt="" />
+                                            <h3 className="rcomic-name">{x.title}</h3>
+                                        </NavLink>
+                                    </li>
+                                ))
+                            }                     
                         </ul>
                         <div className="down-btn"><i className="fa fa-chevron-down" aria-hidden="true" /></div>
                         </div>

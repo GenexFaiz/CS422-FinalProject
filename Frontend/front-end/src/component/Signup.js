@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 import {NavLink, useHistory} from 'react-router-dom';
 import {REGISTER} from '../mutations/mutations';
-import {useApolloClient, useMutation} from '@apollo/react-hooks'
+import {useMutation} from '@apollo/react-hooks';
 
 const Signup = () => {
     const [email, setEmail] = useState("");
