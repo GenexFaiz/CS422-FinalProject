@@ -35,7 +35,7 @@ module.exports = resolvers = {
 				if (!NovelList) {
 					throw new Error("Novels does not exist")
 				}
-				return NovelList.map(item => novelMapper(item))
+				return NovelList
 			}
 			catch (err) {
 				throw err;
@@ -47,7 +47,7 @@ module.exports = resolvers = {
 				if (!novel) {
 					throw new Error("Novel does not exist");
 				}
-				return novelMapper(novel)
+				return novel
 			} catch (err) {
 				throw err;
 			}
@@ -55,7 +55,7 @@ module.exports = resolvers = {
 		async Latest(parent, {limit, page}, context, info) {
 			try {
 				const novelList = await Novel.find().sort({updatedTime: -1}).skip(limit*page).limit(limit);
-				return novelList.map(item => novelMapper(item))
+				return novelList
 			} catch (err) {
 				throw err;
 			}
@@ -70,7 +70,7 @@ module.exports = resolvers = {
 				const novelList = await Novel.find({
 					uploader: uploader
 				}).sort({updatedTime: -1}).skip(limit*page).limit(limit);
-				return novelList.map(item => novelMapper(item))
+				return novelList
 			} catch (err) {
 				throw err;
 			}
@@ -78,7 +78,7 @@ module.exports = resolvers = {
 		async MostViewed(parent, {limit, page}, context, info) {
 			try {
 				const novelList = await Novel.find().sort({view: -1}).skip(limit*page).limit(limit);
-				return novelList.map(item => novelMapper(item))
+				return novelList
 			} catch (err) {
 				throw err;
 			}
@@ -86,7 +86,7 @@ module.exports = resolvers = {
 		async Recommend(parent, {limit, page}, context, info) {
 			try {
 				const novelList = await Novel.find().sort({avgScore: -1}).skip(limit*page).limit(limit);
-				return novelList.map(item => novelMapper(item))
+				return novelList
 			} catch (err) {
 				throw err;
 			}
@@ -179,7 +179,7 @@ module.exports = resolvers = {
 				if (!CurrentNovel) {
 					throw new Error("Chapter is parentless")
 				}
-				return novelMapper(CurrentNovel)
+				return CurrentNovel
 			}
 			catch (err) {
 				throw err;
@@ -196,7 +196,7 @@ module.exports = resolvers = {
 				if (!CurrentNovel) {
 					throw new Error("Chapter is parentless")
 				}
-				return novelMapper(CurrentNovel)
+				return CurrentNovel;
 			}
 			catch (err) {
 				throw err;
