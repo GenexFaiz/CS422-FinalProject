@@ -553,7 +553,7 @@
 }
 .readnovel-top {
   width: 100%;
-  height: 60px;
+  height: 85px;
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
@@ -564,10 +564,11 @@
 }
 .readnovel-top #novelname {
   font-size: 40px;
+  text-align: center;
 }
 .readnovel-top #chapter {
-  padding-left: 15px;
   font-size: 20px;
+  text-align: center
 }
 .readnovel-mid {
   margin-top: 20px;

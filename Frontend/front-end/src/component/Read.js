@@ -34,12 +34,12 @@ const Read = (props) => {
               <div className="main-body">
                     <div className="main-body-wrap">
                         <div className="readnovel-top">
-                            <span id="novelname">{data.ReadChapter.novel.title}</span>
-                            <span id="chapter">Chapter {data.ReadChapter.number}: {data.ReadChapter.title}</span>
+                            <h2 id="novelname">{data.ReadChapter.novel.title}</h2>
+                            <h3 id="chapter">- Chapter {data.ReadChapter.number}: {data.ReadChapter.title} -</h3>
                         </div>
                         <div className="readnovel-mid">
                             {
-                                data.ReadChapter.content.split('\r\n').map(i => {
+                                data.ReadChapter.content.split('\r\n'&&'\n').map(i => {
                                     return  <p>{i}</p>
                                 })
                             }
