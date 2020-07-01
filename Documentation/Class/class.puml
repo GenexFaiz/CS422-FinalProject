@@ -1,0 +1,61 @@
+@startuml class
+
+class "Novel" as n {
+    title
+    author : Author
+    uploader : Account
+    summary
+    view
+    rating
+    avgScore
+    thumbnail
+    createdTime
+    updatedTime
+}
+
+class "Rating" as r {
+    score
+    updatedTime
+}
+class "Author" as a{
+}
+
+class "Self-created" as sc {
+    account
+}
+
+class "Outside-created" as oc {
+    name
+}
+
+class "Chapter" as c {
+    title
+    number
+    content
+    uploadTime
+}
+
+class "Account" as u {
+    email
+    username
+    avatar
+    createdTime
+}
+
+class "admin" as ua {
+}
+
+class "User" as uu {
+}
+
+a --|> sc
+a --|> oc
+sc "1" .. "1" u
+u --|> uu
+u --|> ua
+n "1"-left--"0..*" c
+n "1"--"1" u
+n "1"-right-"1" a
+r "1..*"-left-"1" n
+r "1..*"--"1" u
+@enduml

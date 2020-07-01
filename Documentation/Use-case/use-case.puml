@@ -1,0 +1,49 @@
+@startuml use-case
+
+actor :User: as a1
+actor :Google Cloud: as a2
+
+rectangle Authentication {
+    usecase uc1 as "Login"
+    usecase uc2 as "Signup"
+}
+
+rectangle AllUser {
+    usecase uc3 as "View Recent Updated Novel"
+    usecase uc4 as "View Most Viewed Novel"
+    usecase uc5 as "View Recommended Novel"
+    usecase uc6 as "Search Novel"
+    usecase uc7 as "View Summary of a novel"
+    usecase uc8 as "Read Chapter of a novel"
+}
+
+rectangle AuthorizeUser {
+    usecase uc9 as "Rate a novel"
+    usecase uc10 as "Upload novel"
+    usecase uc11 as "Upload chapter"
+    usecase uc12 as "View self uploaded novel"
+    usecase uc13 as "View all rating by youself"
+    usecase uc14 as "Upload thumbanil image"
+}
+
+a1 -left-> uc2
+a1 -left-> uc1
+uc2 ..> uc1
+a1 -up-> uc3
+a1 -up-> uc4
+a1 -up-> uc5
+a1 -up-> uc6
+uc3 .up.> uc7
+uc4 .up.> uc7
+uc5 .up.> uc7
+uc6 .up.> uc7
+uc7 .up.> uc8
+a1 --> uc9
+a1 --> uc10
+a1 --> uc11
+a1 --> uc12
+a1 --> uc13
+uc10 ..> uc14
+uc14 --> a2
+
+@enduml

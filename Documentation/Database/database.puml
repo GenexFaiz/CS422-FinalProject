@@ -1,0 +1,59 @@
+@startuml database
+' hide the spot
+hide circle
+
+entity "Novel" as n {
+    _id: PK
+    title
+    author : FK
+    uploader : FK
+    summary
+    view
+    rating
+    avgScore
+    thumbnail
+    createdTime
+    updatedTime
+}
+
+entity "Rating" as r {
+    _id: PK
+    user: FK
+    novel: FK
+    score
+    updatedTime
+}
+
+entity "Author" as a{
+    _id: PK
+    account : FK
+    name
+    type: self-created | outside-created
+}
+
+
+entity "Chapter" as c {
+    _id: PK
+    novel: FK
+    title
+    number
+    content
+    uploadTime
+}
+
+entity "Account" as u {
+    _id : PK
+    email
+    username
+    avatar
+    createdTime
+    type: 'admin' | 'user'
+}
+
+n "1"-left--"0..*" c
+n "1"--"1" u
+n "1"-down-"1" a
+r "1..*"-left-"1" n
+r "1..*"--"1" u
+a "1".."1" u
+@enduml
