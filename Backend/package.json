@@ -21,6 +21,6 @@
     "graphql-tag": "^2.10.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.18",
-    "sharp": "^0.25.4"
+    "sharp": "^0.30.5"
   }
 }
